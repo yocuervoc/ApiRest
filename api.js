@@ -57,9 +57,7 @@ api.get('/user/:id', async (req, res, next) => {
 })
 
 api.get('/users', async (req, res, next)=>{
-    console.log("entra")
     let sh = []
-   // console.log("entra")
     try{
         sh = await User.findAllUsers()
     }catch(e){
@@ -79,30 +77,29 @@ api.post('/createUser', async (req, res, next) => {
     }
 })
 /////////////////////
-api.post('/updatePassword/:id', async (req, res, next) => {
+api.post('/updatepassword/:id', async (req, res, next) => {
+    
     try {
-      const { id } = req.params
-      let pass = req.body.password || ''
-      
-      let user = await User.findUserById(id)
-      
-      let answer = await User.updatePassword(user, pass)
-      res.json({
-        success: true
-      });
-    } catch (error) {
-        console.log('error :(')
-    }
-});
+        const { id } = req.params
+        let password = req.body.password || ''
+        let answer = await User.updatePassword(id, password)
+        res.json({
+          success: true
+        })
+      } catch (error) {
+          console.log('error :(')
+      }
+    
+})
 
 api.post('/updateCreditCard/:id', async (req, res, next) => {
     try {
       const { id } = req.params
       let credit = req.body.creditCard || ''
-      let user = await User.findUserById(id)
-      console.log("userxxxxx", user)
-      let answer = await User.updateCreditCard(user, credit)
-     
+      let answer = await User.updateCreditCard(id, credit)
+      res.json({
+        success: true
+      })
     } catch (error) {
         console.log('error :(')
     }

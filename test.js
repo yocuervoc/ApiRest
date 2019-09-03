@@ -11,10 +11,13 @@ async function run (){
       }
 
     const {User} = await db(config).catch(handleFatalError)
-
+    await User.updatePassword(4, "asdf").catch(handleFatalError)
+    //await User.updateCreditCard(5, "visa").catch(handleFatalError)
+    //await User.updatePassword(4, "asdf").catch(handleFatalError)
+/*
     const user = await User.findUserById(4).catch(handleFatalError)
     console.log(user)
-    /*
+    
     let newuser= {
         name: "Camilo1",
         lastName: "Cuervo",
