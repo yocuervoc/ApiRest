@@ -1,8 +1,9 @@
+
 const Sequelize = require('sequelize')
 const setupDatabase = require('../lib/db')
 
 
-module.exports = function  setupUserModel (config){
+module.exports = function setupUserModel (config){
     const sequelize = setupDatabase (config)
 
     return sequelize.define('user', {
@@ -25,6 +26,10 @@ module.exports = function  setupUserModel (config){
             allowNull: false
         },
         password: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        creditCard:{
             type: Sequelize.STRING,
             allowNull: false
         }
