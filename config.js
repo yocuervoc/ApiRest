@@ -7,5 +7,8 @@ module.exports = {
     host: process.env.DB_HOST || 'localhost',
     dialect: 'mysql',
     setup: true
+  },
+  auth:{
+    secret: process.env.SECRET || 'llaveDelToken'
   }
 }

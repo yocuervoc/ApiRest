@@ -45,8 +45,11 @@ api.use('*', async (req, res, next) => {
 })
 
 
-api.get('/user/:id', async (req, res, next) => {
-    
+api.get('/user/:id', auth(config.auth), async (req, res, next) => {
+    const { user } = req
+    if (!user || !user.username){
+        return next(new Error('no autorizado'))
+    }
     const { id } = req.params
     console.log(id)
     u = []
@@ -57,7 +60,7 @@ api.get('/user/:id', async (req, res, next) => {
     res.send({ u })
 })
 
-api.get('/users', async (req, res, next)=>{
+api.get('/users', auth(config.auth), async (req, res, next)=>{
     let sh = []
     try{
         sh = await User.findAllUsers()
@@ -68,7 +71,7 @@ api.get('/users', async (req, res, next)=>{
     res.send({sh })
 })
 
-api.post('/createUser', async (req, res, next) => {
+api.post('/createUser', auth(config.auth), async (req, res, next) => {
     try{
     let answer = await User.createUser(req.body)
     res.send({ success: true })
@@ -78,7 +81,7 @@ api.post('/createUser', async (req, res, next) => {
     }
 })
 /////////////////////
-api.post('/updatepassword/:id', async (req, res, next) => {
+api.post('/updatepassword/:id', auth(config.auth), async (req, res, next) => {
     
     try {
         const { id } = req.params
@@ -93,7 +96,7 @@ api.post('/updatepassword/:id', async (req, res, next) => {
     
 })
 
-api.post('/updateCreditCard/:id', async (req, res, next) => {
+api.post('/updateCreditCard/:id', auth(config.auth), async (req, res, next) => {
     try {
       const { id } = req.params
       let credit = req.body.creditCard || ''
