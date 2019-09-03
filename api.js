@@ -1,5 +1,6 @@
 const express = require('express')
 const asyncify = require('express-asyncify')
+const auth = require('express-jwt')
 const db = require('./')
 
 
