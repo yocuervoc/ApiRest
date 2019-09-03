@@ -12,9 +12,9 @@ async function run (){
 
     const {User} = await db(config).catch(handleFatalError)
 
-    const user = await User.findUserById(1).catch(handleFatalError)
+    const user = await User.findUserById(4).catch(handleFatalError)
     console.log(user)
-    
+    /*
     let newuser= {
         name: "Camilo1",
         lastName: "Cuervo",
@@ -37,6 +37,7 @@ async function run (){
 
     const update = await User.updateUserPassword(newuser2, "secreto")
     console.log(user2)
+    */
 }
 
 function handleFatalError (err) {
