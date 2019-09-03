@@ -45,7 +45,7 @@ api.use('*', async (req, res, next) => {
 
 
 api.get('/user/:id', async (req, res, next) => {
-    console.log("entra")
+    
     const { id } = req.params
     console.log(id)
     u = []
@@ -68,39 +68,47 @@ api.get('/users', async (req, res, next)=>{
     
     res.send({sh })
 })
-/*
-api.get('/shops/:id', async (req, res, next) => {
-    const { id } = req.params
-    sh = []
-    sh = await Store.findStoreByPk(id)
-    if (!sh) {
-        return next(new Error("id no found"))
-    }
-    res.send({ sh })
-})
 
-api.post('/createShop', async (req, res, next) => {
+api.post('/createUser', async (req, res, next) => {
     try{
-    let answer = await Store.createStore(req.body)
+    let answer = await User.createUser(req.body)
     res.send({ success: true })
     }
     catch(error) {
         return next(error)
     }
 })
-
-
-
-api.post('/shops/:id/addProduct', async (req, res, next) => {
-    const { id } = req.params
-    sh = []
-    sh = await Store.findStoreByPk(id)
-    if (!sh) {
-        return next(new Error("id no found"))
+/////////////////////
+api.post('/updatePassword/:id', async (req, res, next) => {
+    try {
+      const { id } = req.params
+      let pass = req.body.password || ''
+      
+      let user = await User.findUserById(id)
+      
+      let answer = await User.updatePassword(user, pass)
+      res.json({
+        success: true
+      });
+    } catch (error) {
+        console.log('error :(')
     }
-    await sh.addProduct(req.body)
-    
-    res.send({ seCreoProducto: true })
-})
-*/
+});
+
+api.post('/updateCreditCard/:id', async (req, res, next) => {
+    try {
+      const { id } = req.params
+      let credit = req.body.creditCard || ''
+      let user = await User.findUserById(id)
+      console.log("userxxxxx", user)
+      let answer = await User.updateCreditCard(user, credit)
+     
+    } catch (error) {
+        console.log('error :(')
+    }
+});
+
+//////////////////
+
+
 module.exports = api
