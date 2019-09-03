@@ -1,0 +1,24 @@
+{
+  "name": "userdb",
+  "version": "1.0.0",
+  "description": "base de datos prueba hightech",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yocuervoc/ApiRestHightech.git"
+  },
+  "author": "Yocuervoc@unal.edu.co",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yocuervoc/ApiRestHightech/issues"
+  },
+  "homepage": "https://github.com/yocuervoc/ApiRestHightech#readme",
+  "dependencies": {
+    "mysql": "^2.17.1",
+    "mysql2": "^1.7.0",
+    "sequelize": "^5.18.0"
+  }
+}
