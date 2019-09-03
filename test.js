@@ -19,13 +19,24 @@ async function run (){
         name: "Camilo1",
         lastName: "Cuervo",
         username: "cacuervoc",
-        password: "new pass"
+        password: "new pass",
+        creditCard: "123456XXX"
+    }
+
+    let newuser2= {
+        id: 3,
+        name: "Camilo1",
+        lastName: "Cuervo",
+        username: "cacuervoc",
+        password: "new pass",
+        creditCard: "123456XXX"
     }
     
     const user2 = await User.createUser(newuser).catch(handleFatalError)
     console.log(user2)
 
-
+    const update = await User.updateUserPassword(newuser2, "secreto")
+    console.log(user2)
 }
 
 function handleFatalError (err) {

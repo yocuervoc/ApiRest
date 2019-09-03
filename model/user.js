@@ -23,13 +23,14 @@ module.exports = function setupUserModel (config){
         },
         username: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         password: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        creditCard:{
+        creditCard:{ 
             type: Sequelize.STRING,
             allowNull: false
         }
